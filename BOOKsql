@@ -1,0 +1,8 @@
+
+DROP TABLE BOOK_2610;
+create table BOOK_2610(id number,name varchar(200),publishing_date date);
+insert into BOOK_2610 values(1,'JAVA','06-07-2020');
+insert into BOOK_2610 values(2,'C','23-05-2019');
+insert into BOOK_2610 values(3,'SQL','08-10-2015');
+commit;
+select * from BOOK_2610;
