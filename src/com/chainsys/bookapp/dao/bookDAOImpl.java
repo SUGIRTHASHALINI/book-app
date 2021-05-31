@@ -7,7 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.chainsys.bookapp.model.book;
@@ -20,6 +22,8 @@ public class bookDAOImpl implements BookDAO{
 	private static PreparedStatement pstmt;
 	private static ResultSet rs;
 	private static Set<book> bookSet;
+	private static ArrayList<String> namelist;
+	private static ArrayList<Integer> idlist;
 	public bookDAOImpl() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -43,6 +47,36 @@ public class bookDAOImpl implements BookDAO{
 			e.printStackTrace();
 		}
 		return bookSet;
+	}
+	
+	@Override
+	public List<String> findAllName() {
+		try {
+			pstmt = con.prepareStatement("select name from book_2610");
+			rs = pstmt.executeQuery();
+			 namelist = new ArrayList<>();
+			while (rs.next()) {
+				namelist.add(rs.getString("name"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return namelist;
+	}
+	
+	@Override
+	public List<Integer> findAllId() {
+		try {
+			pstmt = con.prepareStatement("select id from book_2610");
+			rs = pstmt.executeQuery();
+			 idlist = new ArrayList<>();
+			while (rs.next()) {
+				idlist.add(rs.getInt("id"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return idlist;
 	}
 	
 	@Override

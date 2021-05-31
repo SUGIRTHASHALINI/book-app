@@ -2,6 +2,7 @@ package com.chainsys.bookapp.service;
 
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 import com.chainsys.bookapp.dao.BookDAO;
@@ -19,6 +20,16 @@ public class bookServiceImpl implements bookService {
 	@Override
 	public Set<book> findAll() {
 		return dao.findAll();
+	}
+	
+	@Override
+	public List<String> findAllName() {
+		return dao.findAllName();
+	}
+	
+	@Override
+	public List<Integer> findAllId() {
+		return dao.findAllId();
 	}
 	
 	@Override

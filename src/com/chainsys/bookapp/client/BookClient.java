@@ -3,6 +3,7 @@ package com.chainsys.bookapp.client;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -15,6 +16,8 @@ import com.chainsys.bookapp.service.bookServiceImpl;
 public class BookClient {
 	public static void main(String[] args) {
 		Set<book> productSet;
+		List<String> namelist;
+		List<Integer> idlist;
 		bookService service = new bookServiceImpl();
 		String date;
 		DateTimeFormatter dateFormat;
@@ -96,7 +99,16 @@ public class BookClient {
 			} catch (BookNotFoundException e) {
 			}
 			
-			
+		case 8:
+			System.out.println("Find All Books Names");
+			namelist = service.findAllName();
+			System.out.println(namelist);
+			break;
+		case 9:
+			System.out.println("Find All Books Id");
+			idlist = service.findAllId();
+			System.out.println(idlist);
+			break;
 		default:
 			break;
 		}
