@@ -15,5 +15,11 @@ public interface BookDAO {
 	book findByName(String name);
 	
 	book findByDate(LocalDate publishing_date);
+	
+	void delete_id(int id);
+	
+	void delete_date(LocalDate publishing_date);
+	
+	void delete_name(String name);
 
 }

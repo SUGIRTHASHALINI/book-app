@@ -1,5 +1,6 @@
 package com.chainsys.bookapp.service;
 
+
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -49,6 +50,36 @@ public class bookServiceImpl implements bookService {
 			return book;
 		}
 
+	}
+	
+	@Override
+	public void delete_id(int id) throws BookNotFoundException {
+		book book = dao.findById(id);
+		if (book == null) {
+			throw new BookNotFoundException("Book doesn't exist!!");
+		} else {
+			dao.delete_id(id);
+		}
+	}
+	
+	@Override
+	public void delete_name(String name) throws BookNotFoundException {
+		book book = dao.findByName(name);
+		if (book == null) {
+			throw new BookNotFoundException("Product doesn't exist!!");
+		} else {
+			dao.delete_name(name);
+		}
+	}
+
+	@Override
+	public void delete_date(LocalDate publishing_date) throws BookNotFoundException {
+		book book = dao.findByDate(publishing_date);
+		if (book == null) {
+			throw new BookNotFoundException("Book doesn't exist!!");
+		} else {
+			dao.delete_date(publishing_date);
+		}
 	}
 
 

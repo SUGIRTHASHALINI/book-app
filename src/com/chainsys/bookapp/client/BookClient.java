@@ -1,5 +1,6 @@
 package com.chainsys.bookapp.client;
 
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -9,6 +10,7 @@ import com.chainsys.bookapp.exception.BookNotFoundException;
 import com.chainsys.bookapp.model.book;
 import com.chainsys.bookapp.service.bookService;
 import com.chainsys.bookapp.service.bookServiceImpl;
+
 
 public class BookClient {
 	public static void main(String[] args) {
@@ -60,6 +62,40 @@ public class BookClient {
 			} catch (BookNotFoundException e) {
 			}
 			break;
+			
+		case 5:
+			System.out.println("Deleting a Book");
+			System.out.println("Enter the Book Id");
+			id = scanner.nextInt();
+			try {
+				service.delete_id(id);
+				productSet = service.findAll();
+				System.out.println(productSet);
+			} catch (BookNotFoundException e) {
+			}
+			
+		case 6:
+			System.out.println("Deleting a Book");
+			System.out.println("Enter the Book name");
+			name = scanner.next();
+			try {
+				service.delete_name(name);
+				productSet = service.findAll();
+				System.out.println(productSet);
+			} catch (BookNotFoundException e) {
+			}
+			
+		case 7:
+			System.out.println("Deleting a Product");
+			try {
+				 	date = "06/07/2020";
+					dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+					service.delete_date(LocalDate.parse(date,dateFormat));
+				productSet = service.findAll();
+				System.out.println(productSet);
+			} catch (BookNotFoundException e) {
+			}
+			
 			
 		default:
 			break;

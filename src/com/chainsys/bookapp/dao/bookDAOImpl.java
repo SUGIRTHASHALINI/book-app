@@ -23,7 +23,7 @@ public class bookDAOImpl implements BookDAO{
 	public bookDAOImpl() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.0.20:1521:EBS1228", "apps", "apps");
+			con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.0.20:1521:DBEBS12", "apps", "apps");
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
@@ -81,7 +81,7 @@ public class bookDAOImpl implements BookDAO{
 	public book findByDate(LocalDate publishing_date) {
 		book book = null;
 		try {
-			pstmt = con.prepareStatement("select * from BOOK_2610 where expiry_date=?");
+			pstmt = con.prepareStatement("select * from BOOK_2610 where publishing_date=?");
 			pstmt.setDate(1, Date.valueOf(publishing_date));
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
@@ -93,5 +93,40 @@ public class bookDAOImpl implements BookDAO{
 
 		return book;
 	}
+	
+	@Override
+	public void delete_id(int id) {
+		try {
+			pstmt = con.prepareStatement("delete BOOK_2610 where id=?");
+			pstmt.setInt(1, id);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	@Override
+	public void delete_name(String name) {
+		try {
+			pstmt = con.prepareStatement("delete BOOK_2610 where name=?");
+			pstmt.setString(1, name);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+	}
+	}	
+	@Override
+	public void delete_date(LocalDate publishing_date) {
+		try {
+			pstmt = con.prepareStatement("delete BOOK_2610 where publishing_date=?");
+			pstmt.setDate(1, Date.valueOf(publishing_date));
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
 	
 }
